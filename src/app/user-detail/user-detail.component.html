@@ -1,0 +1,61 @@
+<form (ngSubmit)="onSubmit()" >
+  <div *ngIf="user" [hidden]="submitted">
+
+  <h2>{{user.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{user.id}}</div>
+  <p>
+    <label>name  <br>
+      <input type="text" [(ngModel)]=user.name name="name">
+    </label>
+  </p>
+  <p>
+    <label>surname <br>
+      <input type="text" [(ngModel)]=user.surname name="surname">
+    </label>
+  </p>
+  <p>
+    <label> Age<br>
+      <input type="number" [(ngModel)]=user.age name="age">
+    </label>
+  </p>
+  <p>
+  <label> Date of Birth<br>
+    <input type="date" [(ngModel)]=user.birthDate name="birthDate">
+  </label>
+</p>
+  <p>
+    <label>email <br>
+      <input type="text" [(ngModel)]=user.mail name="email">
+    </label>
+  </p>
+  <p>
+  <label > Date of Create<br>
+    <input disabled type="text"  [(ngModel)]=user.addDate name="addDate">
+  </label>
+</p>  <p>
+  <label> Date of Edited<br>
+    <input disabled type="text" [(ngModel)]=user.editDate name="editDate">
+  </label>
+</p>
+
+  <button (click)="save()">save</button>
+
+</div>
+<div *ngIf="user" [hidden]="!submitted">
+  <h2>You submitted the following:</h2>
+  <div class="row">
+    <div class="col-xs-3">Name: </div>
+    <div class="col-xs-9">{{ user.name }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Last Name</div>
+    <div class="col-xs-9">{{ user.surname }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Age</div>
+    <div class="col-xs-9">{{ user.age }}</div>
+  </div>
+  <br>
+  <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+</div>
+</form>

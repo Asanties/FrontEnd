@@ -1,0 +1,45 @@
+
+
+      <form #createUserForm="ngForm" (ngSubmit)="createUser(); createUserForm.reset()"   >
+    <p>
+      <label>name  <br>
+        <input #Uname="ngModel" type="text" [(ngModel)]='name' name="name"required>
+        <div [hidden]="Uname.valid || Uname.pristine"
+   class="alert alert-danger">
+Name is required
+</div>
+      </label>
+    </p>
+    <p>
+      <label>surname <br>
+        <input  type="text" [(ngModel)]='surname' name="surname" required>
+      </label>
+    </p>
+    <p>
+      <label> Age<br>
+        <input type="number" [(ngModel)]='age' name="age" pattern="[0-9]{2}" required>
+      </label>
+    </p>
+    <p>
+      <label> Date of Birth<br>
+        <input type="date" [(ngModel)]='birthDate'  name="birthDate" required>
+      </label>
+    </p>
+    <p>
+      <label>email <br>
+        <input type="text" [(ngModel)]='mail' pattern="[a-zA-Z_0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}" name="email" required>
+      </label>
+    </p>
+    <p>
+      <label hidden><br>
+        <input  [(ngModel)]='addDate'  name="addDate ">
+      </label>
+    </p>
+    <p>
+      <label hidden><br>
+        <input  [(ngModel)]='editDate'  name="editDate">
+      </label>
+    </p>
+    <button mat-button type="submit"  [disabled] = "!createUserForm.form.valid" >
+Create User
+</button>
