@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { UserDetailComponent } from './user-detail.component';
+import {HttpClientModule} from "@angular/common/http";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('UserDetailComponent', () => {
   let component: UserDetailComponent;
@@ -8,9 +12,11 @@ describe('UserDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserDetailComponent ]
+      declarations: [UserDetailComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [FormsModule, HttpClientModule, HttpClientTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,3 +29,4 @@ describe('UserDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

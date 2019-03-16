@@ -8,7 +8,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { UserCreateComponent } from './user-create/user-create.component';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import { Location } from '@angular/common';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
 

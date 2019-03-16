@@ -2,9 +2,9 @@ export class User {
   id : number;
   name: string;
   surname: string;
-  age: number;
+  phone: number;
   mail: string;
-  birthDate: number;
-  addDate:string;
-  editDate:string;
+  birthDate: string;
+  addDate: string;
+  editDate: string;
 }

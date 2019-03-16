@@ -1,61 +1,41 @@
 <form (ngSubmit)="onSubmit()" >
-  <div *ngIf="user" [hidden]="submitted">
+  <div *ngIf="user" >
 
   <h2>{{user.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{user.id}}</div>
+
+  <mat-form-field>
+<input matInput placeholder="Name" [(ngModel)]="user.name" minlength="3" name="name" #nameModel="ngModel" required autocomplete="off">
+</mat-form-field>
+<br>
+<mat-form-field>
+<input matInput placeholder="Last Name" [(ngModel)]="user.surname" minlength="3" name="surname" #nameModel="ngModel" required autocomplete="off">
+</mat-form-field>
+<br>
+<mat-form-field>
+  <span matPrefix>+ &nbsp;</span>
+<input matInput placeholder="Phone Number" [(ngModel)]="user.phone" minlength="8"   name="phone" #nameModel="ngModel" required autocomplete="off">
+</mat-form-field>
+<br>
+<mat-form-field>
+    <input matInput placeholder="E-mail" [(ngModel)]="user.mail" name="email" #emailModel="ngModel" required email pattern="[a-zA-Z_0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}" autocomplete="off">
+  </mat-form-field>
+  <br>
+    <mat-form-field class="example-full-width">
+     <input matInput max="{{maxdate}}" type="text"  name="birthDate" [(ngModel)]="user.birthDate" #dateModel="ngModel" [matDatepicker]="picker" placeholder="Birthday" autocomplete="off" required>
+     <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+     <mat-datepicker #picker></mat-datepicker>
+   </mat-form-field>
   <p>
-    <label>name  <br>
-      <input type="text" [(ngModel)]=user.name name="name">
-    </label>
-  </p>
-  <p>
-    <label>surname <br>
-      <input type="text" [(ngModel)]=user.surname name="surname">
-    </label>
-  </p>
-  <p>
-    <label> Age<br>
-      <input type="number" [(ngModel)]=user.age name="age">
-    </label>
-  </p>
-  <p>
-  <label> Date of Birth<br>
-    <input type="date" [(ngModel)]=user.birthDate name="birthDate">
-  </label>
-</p>
-  <p>
-    <label>email <br>
-      <input type="text" [(ngModel)]=user.mail name="email">
-    </label>
-  </p>
-  <p>
-  <label > Date of Create<br>
+  <label > Date Created<br>
     <input disabled type="text"  [(ngModel)]=user.addDate name="addDate">
   </label>
 </p>  <p>
-  <label> Date of Edited<br>
+  <label> Date Edited<br>
     <input disabled type="text" [(ngModel)]=user.editDate name="editDate">
   </label>
 </p>
 
-  <button (click)="save()">save</button>
+  <button mat-raised-button color="accent" (click)="save()">save</button>
 
-</div>
-<div *ngIf="user" [hidden]="!submitted">
-  <h2>You submitted the following:</h2>
-  <div class="row">
-    <div class="col-xs-3">Name: </div>
-    <div class="col-xs-9">{{ user.name }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3">Last Name</div>
-    <div class="col-xs-9">{{ user.surname }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3">Age</div>
-    <div class="col-xs-9">{{ user.age }}</div>
-  </div>
-  <br>
-  <button class="btn btn-primary" (click)="submitted=false">Edit</button>
-</div>
-</form>
+
+

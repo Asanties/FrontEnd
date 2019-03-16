@@ -1,4 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {HttpClientModule} from "@angular/common/http";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 import { UsersComponent } from './users.component';
 
@@ -8,7 +12,9 @@ describe('UsersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      declarations: [ UsersComponent ],
+     schemas: [ NO_ERRORS_SCHEMA],
+      imports: [ FormsModule, HttpClientModule,  HttpClientTestingModule]
     })
     .compileComponents();
   }));

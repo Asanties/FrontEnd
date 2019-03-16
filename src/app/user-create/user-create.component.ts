@@ -1,49 +1,48 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import {Component, OnInit, Input, Output} from '@angular/core';
 import { User } from '../user';
-import { NgModule } from '@angular/core';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import { NgForm} from '@angular/forms';
+
 import { UserService } from '../user.service';
 import { UsersComponent } from '../users/users.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgForm} from "@angular/forms";
+
+
 
 
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.css'],
-  styles: [`.ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
-}
+  styleUrls: ['./user-create.component.css']
 
-.ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
-}
-    `]
+
 })
 export class UserCreateComponent implements OnInit {
-
-  ngOnInit() {
-  }
-  selectedUser: User;
-
-users: User[];
-
-
-  constructor( private userService: UserService,
-  private userComponent: UsersComponent) {}
-   @Input() user: User;
-
-  id: number;
+  user: User;
   name: string;
   surname: string;
-  age: number;
+  phone: number;
   mail: string;
-  birthDate: number;
+  birthDate: any;
   addDate: string;
   editDate: string;
 
-  createUser(UserForm: NgForm){
+  maxdate: any;
+  selectedUser: User;
+
+
+  ngOnInit() {
+  }
+
+
+
+
+ constructor( private userService: UserService, private usersComponent: UsersComponent
+  ) {
+    this.maxdate = new Date().toISOString().substr(0, 10);
+
+  }
+
+
+createUser( ) {
 
 
 
@@ -51,7 +50,7 @@ users: User[];
       id: 1,
       name: this.name,
       surname: this.surname,
-      age: this.age,
+      phone: this.phone,
       mail: this.mail,
       birthDate: this.birthDate,
       addDate: new Date().toDateString(),
@@ -60,7 +59,7 @@ users: User[];
 
 
     this.userService.createUser(this.user)
-    .subscribe(() => { this.userComponent.getUsers();
+    .subscribe(() => { this.usersComponent.getUsers();
         });
 
 

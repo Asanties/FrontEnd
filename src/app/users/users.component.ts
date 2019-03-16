@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgModule } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { FormsModule } from '@angular/forms';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {HttpEvent} from "@angular/common/http";
+
+
 
 @Component({
   selector: 'app-users',
@@ -11,6 +11,7 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+
 
 
   selectedUser: User;
@@ -21,7 +22,13 @@ export class UsersComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
+  ngOnInit() {
 
+    this.getUsers();
+
+
+
+  }
   onSelect(user: User): void {
     this.selectedUser = user;
   }
@@ -38,31 +45,23 @@ getUsers(): void {
     this.userService.getUsers()
         .subscribe((users) => {
 
-          var allusers = [];
+          const allusers = [];
 
           for(var i = 0; i < users.length; i++){
             allusers.push({
               id: users[i]._id,
               name: users[i]._source.name,
               surname: users[i]._source.surname,
-              age: users[i]._source.age,
+              phone: users[i]._source.phone,
               mail: users[i]._source.mail,
               birthDate: users[i]._source.birthDate,
               addDate: users[i]._source.addDate,
               editDate: users[i]._source.editDate
-            })
-          }
+            })}
           this.users = allusers;
 
           console.log(allusers);
-        })
-}
-ngOnInit() {
+        })}
 
-  this.getUsers();
-
-
-
-}
 
 }

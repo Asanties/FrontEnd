@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { UserCreateComponent } from './user-create/user-create.component';
+
 import { User } from './user';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -18,7 +17,8 @@ const httpOptions = {
 })
 export class UserService {
 
-private UserURL = 'http://127.0.0.1:3000/users'
+UserURL = 'http://127.0.0.1:3000/users';
+
   constructor(
     private messageService: MessageService,
   private http: HttpClient) { }
@@ -26,12 +26,12 @@ private UserURL = 'http://127.0.0.1:3000/users'
   private log(message: string) {
   this.messageService.add(`UserService: ${message}`);
 }
-user: User
 
 
 
 
-private handleError<T> (operation = 'operation', result?: T) {
+
+handleError<T>(operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
     // TODO: send the error to remote logging infrastructure
@@ -52,7 +52,7 @@ private handleError<T> (operation = 'operation', result?: T) {
   }
 
 
-  updateUser (user: User): Observable<any> {
+  updateUser (user: any): Observable<any> {
       const id = typeof user === 'number' ? user : user.id;
     const url = `${this.UserURL}/${id}`;
     return this.http.put(url, user, httpOptions).pipe(
@@ -64,7 +64,7 @@ private handleError<T> (operation = 'operation', result?: T) {
 
 
 
-  deleteUser (user: User | number): Observable<User> {
+  deleteUser (user: any): Observable<any> {
   const id = typeof user === 'number' ? user : user.id;
   const url = `${this.UserURL}/${id}`;
 
@@ -74,10 +74,8 @@ private handleError<T> (operation = 'operation', result?: T) {
   );
 }
 
-  createUser(user: User): Observable<User>{
+  createUser(user: any): Observable<any>{
 
-        return this.http.post<User>(this.UserURL, user)
-
-
+        return this.http.post<User>(this.UserURL, user);
   }
 }

@@ -1,12 +1,16 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {NO_ERRORS_SCHEMA} from "@angular/core";
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [ AppComponent ],
+      schemas: [ NO_ERRORS_SCHEMA],
+      imports: [ FormsModule, HttpClientModule,  HttpClientTestingModule]
     }).compileComponents();
   }));
 

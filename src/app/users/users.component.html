@@ -1,18 +1,28 @@
-<app-user-create></app-user-create>
+<mat-drawer-container  class="example-container">
+  <mat-drawer opened mode="side">
 <form >
-<h2>App Users</h2>
+
+
+
+<h2 >My Users</h2>
+
 <ul class="users">
-  <li *ngFor="let user of users"
+  <mat-action-list *ngFor="let user of users"
 
     [class.selected]="user === selectedUser"
     (click)="onSelect(user)">
     {{user.name}} {{user.surname}}
-    <button  class="delete" title="delete user"
+    <button mat-icon-button  color="warn" class="delete" title="delete user"
       (click)="delete(user)">x</button>
+      
 
-  </li>
+  </mat-action-list>
 </ul>
+
 </form>
+</mat-drawer>
+  <mat-sidenav opened mode="side" position="end">  <h2 >Create User</h2>
+  <app-user-create></app-user-create></mat-sidenav>
+ <app-user-detail [user]="selectedUser"></app-user-detail>
 
-
-<app-user-detail [user]="selectedUser"></app-user-detail>
+</mat-drawer-container>

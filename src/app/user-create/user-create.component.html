@@ -1,35 +1,29 @@
 
 
-      <form #createUserForm="ngForm" (ngSubmit)="createUser(); createUserForm.reset()"   >
-    <p>
-      <label>name  <br>
-        <input #Uname="ngModel" type="text" [(ngModel)]='name' name="name"required>
-        <div [hidden]="Uname.valid || Uname.pristine"
-   class="alert alert-danger">
-Name is required
-</div>
-      </label>
-    </p>
-    <p>
-      <label>surname <br>
-        <input  type="text" [(ngModel)]='surname' name="surname" required>
-      </label>
-    </p>
-    <p>
-      <label> Age<br>
-        <input type="number" [(ngModel)]='age' name="age" pattern="[0-9]{2}" required>
-      </label>
-    </p>
-    <p>
-      <label> Date of Birth<br>
-        <input type="date" [(ngModel)]='birthDate'  name="birthDate" required>
-      </label>
-    </p>
-    <p>
-      <label>email <br>
-        <input type="text" [(ngModel)]='mail' pattern="[a-zA-Z_0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}" name="email" required>
-      </label>
-    </p>
+      <form #createUserForm="ngForm"  class="example-container" (ngSubmit)="createUser(createUserForm); createUserForm.reset()" color="primary"  >
+
+    <mat-form-field>
+  <input matInput placeholder="Name" [(ngModel)]="name" minlength="4" name="name" #nameModel="ngModel" required autocomplete="off">
+</mat-form-field>
+<br>
+<mat-form-field>
+<input matInput placeholder="Last Name" [(ngModel)]="surname" minlength="4" name="surname" #surnameModel="ngModel" required autocomplete="off">
+</mat-form-field>
+<br>
+<mat-form-field>
+  <span matPrefix>+ &nbsp;</span>
+<input matInput placeholder="Phone Number" [(ngModel)]="phone" minlength="8"   name="phone" #phoneModel="ngModel" required autocomplete="off">
+</mat-form-field>
+<br>
+<mat-form-field>
+    <input matInput placeholder="E-mail" [(ngModel)]="mail" name="email" #emailModel="ngModel" required email pattern="[a-zA-Z_0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}" autocomplete="off">
+  </mat-form-field>
+  <br>
+    <mat-form-field class="example-full-width">
+     <input matInput max="{{maxdate}}"   name="birthDate" [(ngModel)]="birthDate" #dateModel="ngModel" [matDatepicker]="picker" placeholder="Birthday" autocomplete="off" required>
+     <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+     <mat-datepicker #picker></mat-datepicker>
+   </mat-form-field>
     <p>
       <label hidden><br>
         <input  [(ngModel)]='addDate'  name="addDate ">
@@ -40,6 +34,7 @@ Name is required
         <input  [(ngModel)]='editDate'  name="editDate">
       </label>
     </p>
-    <button mat-button type="submit"  [disabled] = "!createUserForm.form.valid" >
+    <button mat-raised-button color="primary"   type="submit" background-color="primary" [disabled] = "!createUserForm.form.valid" >
 Create User
 </button>
+      </form>
