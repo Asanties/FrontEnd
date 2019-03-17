@@ -3,7 +3,7 @@ import { User } from '../user';
 
 import { UserService } from '../user.service';
 import { UsersComponent } from '../users/users.component';
-import {NgForm} from "@angular/forms";
+import {NgForm} from '@angular/forms';
 
 
 
@@ -16,55 +16,49 @@ import {NgForm} from "@angular/forms";
 
 })
 export class UserCreateComponent implements OnInit {
-  user: User;
-  name: string;
-  surname: string;
-  phone: number;
-  mail: string;
-  birthDate: any;
-  addDate: string;
-  editDate: string;
+  user: object;
+
 
   maxdate: any;
-  selectedUser: User;
-
-
-  ngOnInit() {
-  }
 
 
 
 
- constructor( private userService: UserService, private usersComponent: UsersComponent
+
+
+
+ constructor( private userService: UserService, private usersComponent: UsersComponent,
+
   ) {
     this.maxdate = new Date().toISOString().substr(0, 10);
 
   }
 
 
-createUser( ) {
+  ngOnInit() { }
 
+
+createUser(form: NgForm) {
 
 
     this.user = {
-      id: 1,
-      name: this.name,
-      surname: this.surname,
-      phone: this.phone,
-      mail: this.mail,
-      birthDate: this.birthDate,
+      name: form.value.name,
+      surname: form.value.surname,
+      phone: form.value.phone,
+      mail: form.value.mail,
+      birthDate: form.value.birthDate,
       addDate: new Date().toDateString(),
       editDate: new Date().toDateString()
-    }
+    };
 
 
     this.userService.createUser(this.user)
-    .subscribe(() => { this.usersComponent.getUsers();
+    .subscribe((user: any) => { this.usersComponent.getUsers();
         });
 
-
+  form.resetForm();
   }
 
-
-
 }
+
+

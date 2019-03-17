@@ -16,14 +16,14 @@ export class UserDetailComponent implements OnInit {
   onSubmit() { this.submitted = true; }
 
 maxdate: any;
-  @Input() user: User;
+  @Input() user: any;
 
   constructor( private userService: UserService
    ) {
      this.maxdate = new Date().toISOString().substr(0, 10);
    }
 
-   save(): void {
+   save(): any {
      this.user.editDate =  new Date().toDateString();
      this.userService.updateUser(this.user).subscribe();
 

@@ -1,47 +1,42 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UserCreateComponent } from './user-create.component';
-import {FormsModule, NgForm} from '@angular/forms';
+import {FormsModule, NgForm, FormBuilder} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UsersComponent } from '../users/users.component';
 import {User} from "../user";
 import {UserService} from '../user.service';
-
+import {MockUserService} from "../users.service.mock";
 
 
 import {of} from 'rxjs';
 
-const sinon = require('sinon');
-const assert = sinon.assert();
 
 
-const form  =   {
-    id: +'1',
+const form  = <NgForm>  {
+  value: {
     name: 'john',
-   surname: 'Smith',
+    surname: 'Smith',
     mail: 'someEmail@mail.com',
-    phone: + '1133132',
+    phone: 1133132,
     birthDate: new Date().toDateString(),
     addDate: new Date().toDateString(),
     editDate: new Date().toDateString()
-
+  }
 };
-const testUser = {
-  id: +'1',
+
+const mockUser = {
   name: 'john',
   surname: 'Smith',
   mail: 'someEmail@mail.com',
-  phone: +'1232322',
+  phone: 1133132,
   birthDate: new Date().toDateString(),
   addDate: new Date().toDateString(),
   editDate: new Date().toDateString()
 };
+form.resetForm = () => true;
 
-const MockUserService = {
-  createUser() { return of( true ); },
-  getUsers() { return of( true ); }
-};
 
 describe('UserCreateComponent', () => {
   let component: UserCreateComponent;
@@ -71,9 +66,9 @@ describe('UserCreateComponent', () => {
 
 
 
-    expect(component.createUser());
-    expect(component.user).toEqual(testUser);
-    expect(component.user).toContain('1');
+    expect(component.createUser(form));
+    expect(component.user).toEqual(mockUser);
+
 
 
   });

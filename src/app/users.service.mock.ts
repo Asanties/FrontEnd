@@ -16,4 +16,7 @@ export class MockUserService {
   createUsers() {
     return of ( []);
   }
+  updateUser(){
+    return of([]);
+  }
 }
