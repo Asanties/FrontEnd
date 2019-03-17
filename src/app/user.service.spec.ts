@@ -1,12 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
 import {
   HttpClientTestingModule,
     HttpTestingController
 } from '@angular/common/http/testing';
 
 import { UserService } from './user.service';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -14,9 +14,10 @@ import {FormsModule} from "@angular/forms";
 
 
 const mockUsers =  {
+  id: 1,
   name: 'test',
   surname: 'testLastName',
-  phone: +'38000000000',
+  phone: 38000000000,
   mail: 'testmail@mail.com',
   birthDate: new Date().toDateString(),
   addDate: new Date().toDateString(),
@@ -24,10 +25,10 @@ const mockUsers =  {
 };
 
 const changeUsers =  {
-  id: '1',
+  id: 1,
   name: 'test',
   surname: 'testLastName',
-  phone: '38000000000',
+  phone: 38000000000,
   mail: 'testmail@mail.com',
   birthDate: new Date().toDateString(),
   addDate: new Date().toDateString(),

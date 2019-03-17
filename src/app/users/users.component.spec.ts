@@ -5,6 +5,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 import { UsersComponent } from './users.component';
+import {User} from "../user";
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -27,5 +28,11 @@ describe('UsersComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+
   });
+  it('should create', () => {
+    expect(component.onSelect( User));
+    expect(component.selectedUser).toBeTruthy();
+  });
+
 });

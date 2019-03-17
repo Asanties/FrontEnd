@@ -5,7 +5,7 @@ import { User} from './user';
 import {Observable} from 'rxjs';
 
 export class MockUserService {
-  getUsers(): Observable<User[]> {
+  getUsers(): Observable<any> {
     return of([]);
   }
 
