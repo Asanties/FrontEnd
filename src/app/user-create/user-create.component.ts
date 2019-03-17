@@ -17,18 +17,9 @@ import {NgForm} from '@angular/forms';
 })
 export class UserCreateComponent implements OnInit {
   user: object;
-
-
   maxdate: any;
 
-
-
-
-
-
-
- constructor( private userService: UserService, private usersComponent: UsersComponent,
-
+ constructor(  private userService: UserService, private usersComponent: UsersComponent,
   ) {
     this.maxdate = new Date().toISOString().substr(0, 10);
 
@@ -52,11 +43,11 @@ createUser(form: NgForm) {
     };
 
 
-    this.userService.createUser(this.user)
+    this.userService.createUser( this.user )
     .subscribe((user: any) => { this.usersComponent.getUsers();
         });
 
-  form.resetForm();
+    form.resetForm();
   }
 
 }

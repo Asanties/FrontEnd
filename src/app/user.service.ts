@@ -52,7 +52,7 @@ handleError<T>(operation = 'operation', result?: T) {
   }
 
 
-  updateUser(user: any): Observable<any> {
+  updateUser (user: any): Observable<any> {
       const id = typeof user === 'number' ? user : user.id;
     const url = `${this.UserURL}/${id}`;
     return this.http.put(url, user, httpOptions).pipe(
@@ -74,7 +74,7 @@ handleError<T>(operation = 'operation', result?: T) {
   );
 }
 
-  createUser(user: any): Observable<any>{
+  createUser(user: object){
 
         return this.http.post<User>(this.UserURL, user);
   }

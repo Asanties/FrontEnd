@@ -7,40 +7,24 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {UserService} from '../user.service';
 import {MockUserService} from '../users.service.mock';
-import {of} from 'rxjs';
-
 const sinon = require('sinon');
 
-const form = {
-  value: {
-    name: 'Andrew',
-    surname: 'Anderson',
-    mail: 'someEmail2@mail.com',
-    phone: '0987654321',
-    birthDate: new Date(),
-    addDate: new Date().toDateString(),
-    editDAte: new Date().toDateString()
-  }
-} as NgForm;
-
-const updateUser = {
-  id: '19IRVGkBL_4_2jfQ9F7R',
-  name: 'Andrew',
-  surname: 'Anderson',
-  mail: 'someEmail2@mail.com',
-  phone: '0987654321',
-  dateOfBirth: new Date().toDateString(),
-  dateOfAdded: new Date().toDateString(),
-  dateOfChanged: new Date().toDateString()
+const mockUser = {
+  name: 'john',
+  surname: 'smith',
+  phone: 3800000000,
+  mail: 'mail@mail.com',
+  birthDate: new Date().toDateString(),
+  addDate: new Date().toDateString(),
+  editDate: new Date().toDateString()
 };
-const User = null;
-
 
 
 describe('UserDetailComponent', () => {
   let component: UserDetailComponent;
   let fixture: ComponentFixture<UserDetailComponent>;
   let userService: UserService;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -62,13 +46,14 @@ describe('UserDetailComponent', () => {
 
   it('should be Truthy when submitted', () => {
     expect(component. onSubmit());
-    expect(component. submitted).toBeTruthy();
+    expect(component. submitted).toBe(true);
   });
 
-  it('should be Truthy when submitted', () => {
-    spyOn(component.user, 'save');
-    component.save();
-    expect(component.save()).toHaveBeenCalled();
+  it('should check function save()', () => {
+    const stubFunctionSaveUsers = sinon.spy(component, 'save');
+
+    expect(stubFunctionSaveUsers.call).toBeTruthy();
+
   });
 });
 

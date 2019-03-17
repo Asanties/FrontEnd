@@ -1,5 +1,5 @@
 import { Component, OnInit, Input  } from '@angular/core';
-import { User } from '../user';
+
 
 import { UserService } from '../user.service';
 
@@ -11,17 +11,18 @@ import { UserService } from '../user.service';
 
 })
 export class UserDetailComponent implements OnInit {
-  submitted = false;
-
-  onSubmit() { this.submitted = true; }
-
-maxdate: any;
-  @Input() user: any;
 
   constructor( private userService: UserService
    ) {
      this.maxdate = new Date().toISOString().substr(0, 10);
    }
+
+  submitted = false;
+
+maxdate: any;
+  @Input() user: any;
+  editDate: string;
+  onSubmit() { this.submitted = true; }
 
    save(): any {
      this.user.editDate =  new Date().toDateString();
@@ -30,7 +31,6 @@ maxdate: any;
    }
 
 
-  ngOnInit() {};
-
+  ngOnInit() {}
 
 }

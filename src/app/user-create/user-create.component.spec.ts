@@ -1,23 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UserCreateComponent } from './user-create.component';
-import {FormsModule, NgForm, FormBuilder} from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UsersComponent } from '../users/users.component';
-import {User} from "../user";
 import {UserService} from '../user.service';
-import {MockUserService} from "../users.service.mock";
+
 
 
 import {of} from 'rxjs';
 
 
-
+const mockfunctionCreateUser = {
+  createUser() { return of( true ); },
+  getUsers() { return of( true ); }
+};
 const form  = <NgForm>  {
   value: {
-    name: 'john',
-    surname: 'Smith',
+    name: 'test',
+    surname: 'test',
     mail: 'someEmail@mail.com',
     phone: 1133132,
     birthDate: new Date().toDateString(),
@@ -27,8 +29,8 @@ const form  = <NgForm>  {
 };
 
 const mockUser = {
-  name: 'john',
-  surname: 'Smith',
+  name: 'test',
+  surname: 'test',
   mail: 'someEmail@mail.com',
   phone: 1133132,
   birthDate: new Date().toDateString(),
@@ -47,7 +49,7 @@ describe('UserCreateComponent', () => {
       declarations: [ UserCreateComponent],
       schemas: [ NO_ERRORS_SCHEMA ],
       providers: [ UsersComponent,
-        { provide: UserService, useValue: MockUserService },
+        { provide: UserService, useValue: mockfunctionCreateUser },
         { provide: NgForm, useValue: form },
       ],
       imports: [ FormsModule, HttpClientModule,  HttpClientTestingModule],
@@ -64,22 +66,10 @@ describe('UserCreateComponent', () => {
 
   it('should check function  UserCreate()', () => {
 
-
-
     expect(component.createUser(form));
     expect(component.user).toEqual(mockUser);
 
 
-
   });
-  // it('calls the original function',  () => {
-  //   const callback = sinon.fake();
-  //   const proxy = component.createUser(callback);
-  //
-  //   proxy();
-  //
-  //   assert(callback.called);
-  // });
-
 
 });
