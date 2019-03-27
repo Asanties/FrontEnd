@@ -16,7 +16,7 @@
 </mat-form-field>
 <br>
 <mat-form-field>
-    <input matInput placeholder="E-mail" [(ngModel)]="createUserForm.value.mail" name="email" #emailModel="ngModel" required email pattern="[a-zA-Z_0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}" autocomplete="off">
+    <input matInput placeholder="E-mail" [(ngModel)]="createUserForm.value.mail" name="mail" #emailModel="ngModel"  email pattern="[a-zA-Z_0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}"  autocomplete="off" required>
   </mat-form-field>
   <br>
     <mat-form-field class="example-full-width">
@@ -34,7 +34,7 @@
         <input  [(ngModel)]='createUserForm.value.editDate'  name="editDate">
       </label>
     </p>
-    <button mat-raised-button color="primary"  (click)="createUser(createUserForm)" type="submit" background-color="primary" [disabled] = "!createUserForm.form.valid" >
+    <button mat-raised-button color="primary"  (click)="createUser(createUserForm)" type="submit"  [disabled] = "!createUserForm.form.valid" >
 Create User
 </button>
 

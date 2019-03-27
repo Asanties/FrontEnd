@@ -6,10 +6,12 @@ h2 {
 }
 body {
   margin: 2em;
+  position: center;
 }
 body, input[text], button {
   color: crimson;
   font-family: Cambria, Georgia;
+
 }
 
 button.clear {

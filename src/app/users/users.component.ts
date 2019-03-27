@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import {HttpEvent} from "@angular/common/http";
-import { NgModule } from '@angular/core';
+
 
 
 @Component({
@@ -29,6 +28,8 @@ export class UsersComponent implements OnInit {
 
 
   }
+
+
   onSelect(user: User): void {
     this.selectedUser = user;
   }
@@ -59,7 +60,7 @@ getUsers(): void {
               editDate: users[i]._source.editDate
             })}
           this.users = allusers;
-
+          this.userService.setLoading = false;
           console.log(allusers);
         })}
 

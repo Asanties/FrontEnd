@@ -1,4 +1,5 @@
 <form  (ngSubmit)="onSubmit()" #detailUserForm="ngForm"   >
+
   <div *ngIf="users" >
 
   <h2>{{users.name | uppercase}} Details</h2>
@@ -39,5 +40,6 @@
   <button mat-raised-button color="accent" (click)="save(detailUserForm)">save</button>
 
   </div>
+
 </form>
 

@@ -9,6 +9,8 @@ import { HttpClientModule }    from '@angular/common/http';
 import { UserCreateComponent } from './user-create/user-create.component';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
 
@@ -20,7 +22,8 @@ import { MaterialAppModule } from './ngmaterial.module';
     UsersComponent,
     UserDetailComponent,
     MessagesComponent,
-    UserCreateComponent,
+    UserCreateComponent
+
 
 
 
@@ -32,7 +35,9 @@ import { MaterialAppModule } from './ngmaterial.module';
     MatButtonModule,
     MatCheckboxModule,
     BrowserAnimationsModule,
-    MaterialAppModule
+    MaterialAppModule,
+    MessagesModule,
+    MessageModule
 
   ],
   providers: [UsersComponent],

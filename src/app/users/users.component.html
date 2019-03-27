@@ -14,15 +14,28 @@
     {{user.name}} {{user.surname}}
     <button mat-icon-button  color="warn" class="delete" title="delete user"
       (click)="delete(user)">x</button>
-      
+
 
   </mat-action-list>
+
 </ul>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button  color="primary" (click)="drawer.toggle()">
+      Create New User
+    </button>
+  </div>
 
 </form>
 </mat-drawer>
-  <mat-sidenav opened mode="side" position="end">  <h2 >Create User</h2>
-  <app-user-create></app-user-create></mat-sidenav>
- <app-user-detail [users]="selectedUser"></app-user-detail>
 
+
+  <mat-sidenav #drawer  mode="side" position="end"  >    <h2 >Create User</h2>
+
+  <app-user-create></app-user-create>
+    <mat-spinner [diameter]="40" *ngIf="userService.setLoading" >
+    </mat-spinner>
+  </mat-sidenav>
+ <app-user-detail [users]="selectedUser"></app-user-detail>
+ <app-messages></app-messages>
 </mat-drawer-container>

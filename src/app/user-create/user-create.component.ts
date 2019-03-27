@@ -1,9 +1,9 @@
 import {Component, OnInit, Input, Output} from '@angular/core';
-import { User } from '../user';
-import { NgModule } from '@angular/core';
+
 import { UserService } from '../user.service';
 import { UsersComponent } from '../users/users.component';
 import {NgForm} from '@angular/forms';
+
 
 
 
@@ -26,11 +26,12 @@ export class UserCreateComponent implements OnInit {
   }
 
 
+
+
   ngOnInit() { }
 
 
 createUser(form: NgForm) {
-
 
     this.user = {
       name: form.value.name,
