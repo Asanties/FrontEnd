@@ -52,10 +52,10 @@ handleError<T>(operation = 'operation', result?: T) {
   }
 
 
-  updateUser (user: any): Observable<any> {
-      const id = typeof user === 'number' ? user : user.id;
-    const url = `${this.UserURL}/${id}`;
-    return this.http.put(url, user, httpOptions).pipe(
+  updateUser(user: any): Observable<any> {
+      const id =  user.id;
+      const url = `${this.UserURL}/${id}`;
+      return this.http.put(url, user, httpOptions).pipe(
       tap(_ => this.log(`updated user id=${user.id}`)),
       catchError(this.handleError<any>('updateUser'))
     );
@@ -64,8 +64,8 @@ handleError<T>(operation = 'operation', result?: T) {
 
 
 
-  deleteUser (user: any): Observable<any> {
-  const id = typeof user === 'number' ? user : user.id;
+  deleteUser(user: any): Observable<any> {
+  const id =  user.id;
   const url = `${this.UserURL}/${id}`;
 
   return this.http.delete<User>(url, httpOptions).pipe(

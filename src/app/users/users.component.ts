@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import {HttpEvent} from "@angular/common/http";
-
+import { NgModule } from '@angular/core';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
 
   selectedUser: User;
 
-  users: User[];
+  users: object[];
 
 
 
@@ -43,11 +43,11 @@ export class UsersComponent implements OnInit {
 getUsers(): void {
 
     this.userService.getUsers()
-        .subscribe((users) => {
+        .subscribe((users: any) => {
 
           const allusers = [];
 
-          for(var i = 0; i < users.length; i++){
+          for (let i = 0; i < users.length; i++){
             allusers.push({
               id: users[i]._id,
               name: users[i]._source.name,

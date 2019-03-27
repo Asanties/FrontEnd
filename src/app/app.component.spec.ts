@@ -4,6 +4,9 @@ import {NO_ERRORS_SCHEMA} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {of} from "rxjs";
+
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -20,16 +23,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'testApp'`, () => {
+  it(`should have as title 'My Base'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('testApp');
+    expect(app.title).toEqual('My Base');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to testApp!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to My Base!');
   });
 });

@@ -1,22 +1,47 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, NgForm } from '@angular/forms';
+import {FormsModule, NgForm, NgModel} from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { UserDetailComponent } from './user-detail.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {UserService} from '../user.service';
-import {MockUserService} from '../users.service.mock';
+
+import {of} from 'rxjs';
+
+
 const sinon = require('sinon');
 
+
+
+const form  = <NgForm>  {
+  value: {
+
+    name: 'test',
+    surname: 'test',
+    mail: 'someEmail@mail.com',
+    phone: 1133132,
+    birthDate: new Date().toDateString(),
+    addDate: new Date().toDateString(),
+    editDate: new Date().toDateString()
+  }
+};
+
 const mockUser = {
-  name: 'john',
-  surname: 'smith',
-  phone: 3800000000,
-  mail: 'mail@mail.com',
+
+  name: 'test',
+  surname: 'test',
+  mail: 'someEmail@mail.com',
+  phone: 1133132,
   birthDate: new Date().toDateString(),
   addDate: new Date().toDateString(),
   editDate: new Date().toDateString()
+};
+
+
+const mockFunctionUpdateUser = {
+  updateUser(args) { return of( true ); },
+  getUsers() { return of( true ); }
 };
 
 
@@ -30,11 +55,17 @@ describe('UserDetailComponent', () => {
     TestBed.configureTestingModule({
       declarations: [UserDetailComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [{provide: UserService, useValue: MockUserService}],
+      providers: [{provide: UserService, useValue: mockFunctionUpdateUser},
+        { provide: NgForm, useValue: form }],
       imports: [FormsModule, HttpClientModule, HttpClientTestingModule]
     })
       .compileComponents();
   }));
+  it('should be Truthy when submitted', async(() => {
+    expect(component. onSubmit());
+    expect(component. submitted).toBeTruthy();
+  }));
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UserDetailComponent);
@@ -44,17 +75,17 @@ describe('UserDetailComponent', () => {
 
   });
 
-  it('should be Truthy when submitted', () => {
-    expect(component. onSubmit());
-    expect(component. submitted).toBe(true);
-  });
 
-  it('should check function save()', () => {
-    const stubFunctionSaveUsers = sinon.spy(component, 'save');
+  it('should check function save() to be called', async(() => {
+    const mockUpdateUser = sinon.spy(userService, 'updateUser');
 
-    expect(stubFunctionSaveUsers.call).toBeTruthy();
+    expect(component.save(form));
+    expect(component.user).toEqual(mockUser);
+    expect(mockUpdateUser.called).toEqual(true);
 
-  });
+
+  }));
+
 });
 
 
