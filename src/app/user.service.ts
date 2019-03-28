@@ -4,9 +4,12 @@ import { Observable, of } from 'rxjs';
 
 import { User } from './user';
 import { MessageService } from './message.service';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError,  tap } from 'rxjs/operators';
 
-import { BehaviorSubject } from 'rxjs';
+
+
+
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -25,7 +28,7 @@ UserURL = 'http://127.0.0.1:3000/users';
     private http: HttpClient) { }
 
   private log(message: string) {
-  this.messageService.add(`UserService: ${message}`);
+  this.messageService.add(`You now ${message}`);
 }
 
 
@@ -48,7 +51,7 @@ handleError<T>(operation = 'operation', result?: T) {
 
 
   getUsers(): Observable<any> {
-        return this.http.get<any>(this.UserURL)
+        return this.http.get<any>(this.UserURL);
 
   }
 
@@ -57,7 +60,7 @@ handleError<T>(operation = 'operation', result?: T) {
       const id =  user.id;
       const url = `${this.UserURL}/${id}`;
       return this.http.put(url, user, httpOptions).pipe(
-      tap(_ => this.log(`updated user ${user.name}`)),
+      tap(_ => this.log(`edit user ${user.name}`)),
       catchError(this.handleError<any>('updateUser'))
     );
   }
@@ -70,13 +73,13 @@ handleError<T>(operation = 'operation', result?: T) {
   const url = `${this.UserURL}/${id}`;
 
   return this.http.delete<User>(url, httpOptions).pipe(
-    tap(_ => this.log(`deleted user ${user.name}`)),
+    tap(_ => this.log(`delete user ${user.name}`)),
     catchError(this.handleError<User>('deleteUser'))
   );
 }
 
-  createUser(user: object){
+  createUser(user: object) {
     this.setLoading = true;
-        return this.http.post<User>(this.UserURL, user);
+    return this.http.post<User>(this.UserURL, user);
   }
 }

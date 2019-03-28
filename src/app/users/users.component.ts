@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
 export class UsersComponent implements OnInit {
 
 
+@Output() button;
 
   selectedUser: User;
 

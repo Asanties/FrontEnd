@@ -21,7 +21,7 @@
 </ul>
 
   <div class="example-sidenav-content">
-    <button type="button" mat-button  color="primary" (click)="drawer.toggle()">
+    <button  type="button" mat-button  color="primary" (click)="drawer.toggle()">
       Create New User
     </button>
   </div>
@@ -33,9 +33,9 @@
   <mat-sidenav #drawer  mode="side" position="end"  >    <h2 >Create User</h2>
 
   <app-user-create></app-user-create>
-    <mat-spinner [diameter]="40" *ngIf="userService.setLoading" >
+    <mat-spinner  [diameter]="40" *ngIf="userService.setLoading" >
     </mat-spinner>
   </mat-sidenav>
  <app-user-detail [users]="selectedUser"></app-user-detail>
- <app-messages></app-messages>
+
 </mat-drawer-container>
